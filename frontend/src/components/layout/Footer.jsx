@@ -1,71 +1,90 @@
-import React from 'react';
-import { 
-  Users, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Facebook, 
-  Twitter, 
-  Linkedin, 
-  Instagram, 
-  BookOpen, 
+import React from "react";
+import {
+  Users,
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
+  BookOpen,
   MessageCircle,
   HelpCircle,
   Shield,
   FileText,
-  Heart
-} from 'lucide-react';
+  Heart,
+} from "lucide-react";
+import { Button, Input } from "../ui";
 
-interface FooterProps {
-  darkMode: boolean;
-}
-
-export default function Footer({ darkMode }: FooterProps) {
+const Footer = ({ darkMode }) => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
     platform: [
-      { name: 'Explore Alumni', href: '#alumni', icon: Users },
-      { name: 'Browse Blogs', href: '#blogs', icon: BookOpen },
-      { name: 'Q&A Forum', href: '#qna', icon: MessageCircle },
-      { name: 'Ask Question', href: '#ask', icon: HelpCircle },
+      { name: "Explore Alumni", href: "#alumni", icon: Users },
+      { name: "Browse Blogs", href: "#blogs", icon: BookOpen },
+      { name: "Q&A Forum", href: "#qna", icon: MessageCircle },
+      { name: "Ask Question", href: "#ask", icon: HelpCircle },
     ],
     company: [
-      { name: 'About Us', href: '/about' },
-      { name: 'Our Mission', href: '/mission' },
-      { name: 'Team', href: '/team' },
-      { name: 'Careers', href: '/careers' },
+      { name: "About Us", href: "/about" },
+      { name: "Our Mission", href: "/mission" },
+      { name: "Team", href: "/team" },
+      { name: "Careers", href: "/careers" },
     ],
     support: [
-      { name: 'Help Center', href: '/help' },
-      { name: 'Contact Support', href: '/contact' },
-      { name: 'Guidelines', href: '/guidelines' },
-      { name: 'Report Issue', href: '/report' },
+      { name: "Help Center", href: "/help" },
+      { name: "Contact Support", href: "/contact" },
+      { name: "Guidelines", href: "/guidelines" },
+      { name: "Report Issue", href: "/report" },
     ],
     legal: [
-      { name: 'Privacy Policy', href: '/privacy', icon: Shield },
-      { name: 'Terms of Service', href: '/terms', icon: FileText },
-      { name: 'Cookie Policy', href: '/cookies' },
-      { name: 'GDPR', href: '/gdpr' },
+      { name: "Privacy Policy", href: "/privacy", icon: Shield },
+      { name: "Terms of Service", href: "/terms", icon: FileText },
+      { name: "Cookie Policy", href: "/cookies" },
+      { name: "GDPR", href: "/gdpr" },
     ],
   };
 
   const socialLinks = [
-    { name: 'Facebook', icon: Facebook, href: 'https://facebook.com', color: 'hover:text-blue-600' },
-    { name: 'Twitter', icon: Twitter, href: 'https://twitter.com', color: 'hover:text-blue-400' },
-    { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com', color: 'hover:text-blue-700' },
-    { name: 'Instagram', icon: Instagram, href: 'https://instagram.com', color: 'hover:text-pink-600' },
+    {
+      name: "Facebook",
+      icon: Facebook,
+      href: "https://facebook.com",
+      color: "hover:text-blue-600",
+    },
+    {
+      name: "Twitter",
+      icon: Twitter,
+      href: "https://twitter.com",
+      color: "hover:text-blue-400",
+    },
+    {
+      name: "LinkedIn",
+      icon: Linkedin,
+      href: "https://linkedin.com",
+      color: "hover:text-blue-700",
+    },
+    {
+      name: "Instagram",
+      icon: Instagram,
+      href: "https://instagram.com",
+      color: "hover:text-pink-600",
+    },
   ];
 
   const stats = [
-    { label: 'Active Alumni', value: '2,500+' },
-    { label: 'Students Helped', value: '5,000+' },
-    { label: 'Blog Posts', value: '1,200+' },
-    { label: 'Questions Answered', value: '3,500+' },
+    { label: "Active Alumni", value: "2,500+" },
+    { label: "Students Helped", value: "5,000+" },
+    { label: "Blog Posts", value: "1,200+" },
+    { label: "Questions Answered", value: "3,500+" },
   ];
 
   return (
-    <footer className={`${darkMode ? 'bg-slate-900' : 'bg-gray-900'} text-white`}>
+    <footer
+      className={`${darkMode ? "bg-slate-900" : "bg-gray-900"} text-white`}
+    >
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
@@ -75,12 +94,14 @@ export default function Footer({ darkMode }: FooterProps) {
               <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center">
                 <Users className="h-6 w-6 text-white" />
               </div>
-              <span className="text-2xl font-bold text-white">AlumniConnect</span>
+              <span className="text-2xl font-bold text-white">
+                AlumniConnect
+              </span>
             </div>
-            
+
             <p className="text-gray-300 text-lg leading-relaxed max-w-md">
-              Bridging the gap between students and alumni through meaningful connections, 
-              knowledge sharing, and career guidance.
+              Bridging the gap between students and alumni through meaningful
+              connections, knowledge sharing, and career guidance.
             </p>
 
             {/* Contact Info */}
@@ -180,7 +201,9 @@ export default function Footer({ darkMode }: FooterProps) {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-3xl font-bold text-blue-400 mb-2">{stat.value}</div>
+                <div className="text-3xl font-bold text-blue-400 mb-2">
+                  {stat.value}
+                </div>
                 <div className="text-gray-300 text-sm">{stat.label}</div>
               </div>
             ))}
@@ -190,9 +213,12 @@ export default function Footer({ darkMode }: FooterProps) {
         {/* Newsletter Signup */}
         <div className="mt-16 pt-8 border-t border-gray-800">
           <div className="max-w-2xl mx-auto text-center">
-            <h3 className="text-2xl font-bold text-white mb-4">Stay Connected</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Stay Connected
+            </h3>
             <p className="text-gray-300 mb-6">
-              Get the latest career insights, success stories, and platform updates delivered to your inbox.
+              Get the latest career insights, success stories, and platform
+              updates delivered to your inbox.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
@@ -200,9 +226,7 @@ export default function Footer({ darkMode }: FooterProps) {
                 placeholder="Enter your email"
                 className="flex-1 px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
               />
-              <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 transform hover:scale-105">
-                Subscribe
-              </button>
+              <Button className="px-6 py-3">Subscribe</Button>
             </div>
           </div>
         </div>
@@ -232,7 +256,7 @@ export default function Footer({ darkMode }: FooterProps) {
                 })}
               </div>
             </div>
-            
+
             <div className="flex items-center space-x-2 text-gray-400 text-sm">
               <span>Made with</span>
               <Heart className="h-4 w-4 text-red-500" />
@@ -243,4 +267,6 @@ export default function Footer({ darkMode }: FooterProps) {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;
