@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import { Search, ArrowRight, Users, BookOpen, MessageCircle, Star } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  Search,
+  ArrowRight,
+  Users,
+  BookOpen,
+  MessageCircle,
+  Star,
+} from "lucide-react";
 
-interface HeroProps {
-  darkMode: boolean;
-  onExplore: () => void;
-  onSearch: (query: string) => void;
-}
+export default function Hero({ darkMode, onExplore, onSearch }) {
+  const [searchQuery, setSearchQuery] = useState("");
 
-export default function Hero({ darkMode, onExplore, onSearch }: HeroProps) {
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       onSearch(searchQuery);
@@ -18,10 +19,10 @@ export default function Hero({ darkMode, onExplore, onSearch }: HeroProps) {
   };
 
   const stats = [
-    { icon: Users, label: 'Active Alumni', value: '2,500+' },
-    { icon: BookOpen, label: 'Blog Posts', value: '1,200+' },
-    { icon: MessageCircle, label: 'Q&A Threads', value: '850+' },
-    { icon: Star, label: 'Success Stories', value: '400+' },
+    { icon: Users, label: "Active Alumni", value: "2,500+" },
+    { icon: BookOpen, label: "Blog Posts", value: "1,200+" },
+    { icon: MessageCircle, label: "Q&A Threads", value: "850+" },
+    { icon: Star, label: "Success Stories", value: "400+" },
   ];
 
   return (
@@ -33,11 +34,13 @@ export default function Hero({ darkMode, onExplore, onSearch }: HeroProps) {
           alt="Students and alumni connecting"
           className="w-full h-full object-cover"
         />
-        <div className={`absolute inset-0 ${
-          darkMode 
-            ? 'bg-gradient-to-br from-slate-900/90 via-blue-900/80 to-indigo-900/90' 
-            : 'bg-gradient-to-br from-blue-900/90 via-indigo-900/80 to-blue-800/90'
-        }`} />
+        <div
+          className={`absolute inset-0 ${
+            darkMode
+              ? "bg-gradient-to-br from-slate-900/90 via-blue-900/80 to-indigo-900/90"
+              : "bg-gradient-to-br from-blue-900/90 via-indigo-900/80 to-blue-800/90"
+          }`}
+        />
       </div>
 
       {/* Content */}
@@ -52,8 +55,8 @@ export default function Hero({ darkMode, onExplore, onSearch }: HeroProps) {
               </span>
             </h1>
             <p className="text-xl sm:text-2xl text-blue-100 max-w-3xl mx-auto">
-              Connect with successful alumni, share knowledge through blogs, and get career guidance 
-              in our thriving community platform.
+              Connect with successful alumni, share knowledge through blogs, and
+              get career guidance in our thriving community platform.
             </p>
           </div>
 
@@ -68,9 +71,9 @@ export default function Hero({ darkMode, onExplore, onSearch }: HeroProps) {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search Alumni, Blogs, Questions..."
                   className={`w-full pl-12 pr-32 py-4 text-lg rounded-2xl border-0 focus:ring-4 transition-all duration-300 ${
-                    darkMode 
-                      ? 'bg-slate-800/90 text-white placeholder-gray-400 focus:ring-blue-500/50' 
-                      : 'bg-white/95 text-gray-900 placeholder-gray-500 focus:ring-blue-500/50'
+                    darkMode
+                      ? "bg-slate-800/90 text-white placeholder-gray-400 focus:ring-blue-500/50"
+                      : "bg-white/95 text-gray-900 placeholder-gray-500 focus:ring-blue-500/50"
                   } backdrop-blur-sm shadow-2xl`}
                 />
                 <button
@@ -107,7 +110,9 @@ export default function Hero({ darkMode, onExplore, onSearch }: HeroProps) {
                   className="group p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105"
                 >
                   <Icon className="h-8 w-8 text-emerald-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                  <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
+                  <div className="text-2xl font-bold text-white mb-1">
+                    {stat.value}
+                  </div>
                   <div className="text-blue-200 text-sm">{stat.label}</div>
                 </div>
               );
