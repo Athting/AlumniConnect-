@@ -6,6 +6,8 @@ import compression from 'compression';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
+import { createServer } from 'http';
+import { initializeSocket } from './socket/index.js';
 
 // Import routes
 import authRoutes from './routes/auth.js';
@@ -14,6 +16,7 @@ import blogRoutes from './routes/blogs.js';
 import questionRoutes from './routes/questions.js';
 import connectionRoutes from './routes/connections.js';
 import uploadRoutes from './routes/upload.js';
+import chatRoutes from './routes/chats.js';
 
 // Import middleware
 import { errorHandler } from './middleware/errorHandler.js';
@@ -23,8 +26,11 @@ import { notFound } from './middleware/notFound.js';
 dotenv.config();
 
 const app = express();
+const server = createServer(app);
 const PORT = process.env.PORT || 5000;
 
+// Initialize Socket.IO
+const io = initializeSocket(server);
 // Security middleware
 app.use(helmet());
 app.use(compression());
@@ -69,6 +75,7 @@ app.use('/api/blogs', blogRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/connections', connectionRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/chats', chatRoutes);
 
 // Error handling middleware
 app.use(notFound);
@@ -89,7 +96,7 @@ const connectDB = async () => {
 const startServer = async () => {
   await connectDB();
   
-  app.listen(PORT, () => {
+  server.listen(PORT, () => {
     console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
   });
 };
@@ -97,3 +104,4 @@ const startServer = async () => {
 startServer();
 
 export default app;
+export { io };

@@ -115,3 +115,20 @@ export const validateComment = [
     .isLength({ min: 1, max: 1000 })
     .withMessage('Comment must be between 1 and 1000 characters'),
 ];
+// Chat validation rules
+export const validateDirectChat = [
+  body('participantId')
+    .isMongoId()
+    .withMessage('Invalid participant ID'),
+];
+
+export const validateMessage = [
+  body('content')
+    .trim()
+    .isLength({ min: 1, max: 1000 })
+    .withMessage('Message content must be between 1 and 1000 characters'),
+  body('messageType')
+    .optional()
+    .isIn(['text', 'image', 'file'])
+    .withMessage('Invalid message type'),
+];

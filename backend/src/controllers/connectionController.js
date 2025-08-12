@@ -1,5 +1,6 @@
 import Connection from '../models/Connection.js';
 import User from '../models/User.js';
+import { notifyNewConnection, notifyConnectionAccepted } from '../utils/socketUtils.js';
 
 // @desc    Send connection request
 // @route   POST /api/connections/request
@@ -50,6 +51,9 @@ export const sendConnectionRequest = async (req, res, next) => {
     const populatedConnection = await Connection.findById(connection._id)
       .populate('requester', 'fullName avatar role company batch branch')
       .populate('recipient', 'fullName avatar role company batch branch');
+
+    // Send real-time notification to recipient
+    notifyNewConnection(recipientId, populatedConnection);
 
     res.status(201).json({
       success: true,
@@ -160,6 +164,9 @@ export const acceptConnection = async (req, res, next) => {
     const populatedConnection = await Connection.findById(connection._id)
       .populate('requester', 'fullName avatar role company batch branch')
       .populate('recipient', 'fullName avatar role company batch branch');
+
+    // Send real-time notification to requester
+    notifyConnectionAccepted(connection.requester.toString(), populatedConnection);
 
     res.status(200).json({
       success: true,
