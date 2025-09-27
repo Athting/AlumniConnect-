@@ -1,4 +1,5 @@
 import express from 'express';
+import { body } from 'express-validator';
 import {
   sendConnectionRequest,
   getConnectionRequests,
@@ -11,7 +12,7 @@ import {
   getConnectionStats,
 } from '../controllers/connectionController.js';
 import { protect } from '../middleware/auth.js';
-import { body, handleValidationErrors } from '../middleware/validation.js';
+import { handleValidationErrors } from '../middleware/validation.js';
 
 const router = express.Router();
 

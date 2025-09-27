@@ -1,4 +1,5 @@
 import express from 'express';
+import { body } from 'express-validator';
 import {
   getChats,
   getChat,
@@ -9,7 +10,7 @@ import {
   getChatStats,
 } from '../controllers/chatController.js';
 import { protect } from '../middleware/auth.js';
-import { body, handleValidationErrors } from '../middleware/validation.js';
+import { handleValidationErrors } from '../middleware/validation.js';
 
 const router = express.Router();
 
